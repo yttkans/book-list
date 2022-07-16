@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">BookList</string>
+    <string name="empty" />
+
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="fragment_main_label">Main</string>
+    <string name="fragment_settings_label">Settings</string>
+
+    <string name="label_query">Query</string>
+
+    <string name="preferences_name">root_preference</string>
+    <string name="pref_aws_access_key">pref_aws_access_key</string>
+    <string name="pref_aws_access_key_title">Aws access key</string>
+    <string name="pref_aws_secret_access_key">pref_aws_secret_access_key</string>
+    <string name="pref_aws_secret_access_key_title">Aws secret access key</string>
+    <string name="pref_aws_s3_bucket_key">pref_aws_s3_bucket_key</string>
+    <string name="pref_aws_s3_bucket_key_title">Aws s3 bucket key</string>
+    <string name="pref_aws_s3_object_key">pref_aws_s3_object_key</string>
+    <string name="pref_aws_s3_object_key_title">Aws s3 object key</string>
+    <string name="pref_version_code_key">pref_version_code_key</string>
+    <string name="pref_version_code_title">Version Code</string>
+    <string name="pref_version_name_key">pref_version_name_key</string>
+    <string name="pref_version_name_title">Version Name</string>
+</resources>

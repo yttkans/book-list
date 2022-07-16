@@ -1,0 +1,22 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <EditTextPreference
+        app:key="@string/pref_aws_access_key"
+        app:title="@string/pref_aws_access_key_title" />
+    <EditTextPreference
+        app:key="@string/pref_aws_secret_access_key"
+        app:title="@string/pref_aws_secret_access_key_title" />
+    <EditTextPreference
+        app:key="@string/pref_aws_s3_bucket_key"
+        app:title="@string/pref_aws_s3_bucket_key_title" />
+    <EditTextPreference
+        app:key="@string/pref_aws_s3_object_key"
+        app:title="@string/pref_aws_s3_object_key_title" />
+    <Preference
+        app:defaultValue="@string/empty"
+        app:key="@string/pref_version_code_key"
+        app:title="@string/pref_version_code_title" />
+    <Preference
+        app:defaultValue="@string/empty"
+        app:key="@string/pref_version_name_key"
+        app:title="@string/pref_version_name_title" />
+</PreferenceScreen>
