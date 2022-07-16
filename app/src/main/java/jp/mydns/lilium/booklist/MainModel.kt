@@ -6,6 +6,8 @@ import com.amazonaws.ClientConfiguration
 import com.amazonaws.auth.BasicAWSCredentials
 import com.amazonaws.regions.Region
 import com.amazonaws.services.s3.AmazonS3Client
+import jp.mydns.lilium.booklist.repository.AwsRepository
+import jp.mydns.lilium.booklist.repository.QueryRepository
 import kotlinx.coroutines.launch
 
 class MainModel(application: Application) : AndroidViewModel(application) {
@@ -59,7 +61,7 @@ class MainModel(application: Application) : AndroidViewModel(application) {
                 _items.value = emptyList()
                 return@Observer
             }
-            _items.value = sl.filter { it.name.contains(q) }
+            _items.value = QueryRepository.query(q, sl)
         }
         _items.addSource(_sourceItems, queriedListObserver)
         _items.addSource(query, queriedListObserver)
