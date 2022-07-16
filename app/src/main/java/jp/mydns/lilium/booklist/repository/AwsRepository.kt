@@ -1,7 +1,8 @@
-package jp.mydns.lilium.booklist
+package jp.mydns.lilium.booklist.repository
 
 import android.content.Context
 import com.amazonaws.services.s3.AmazonS3Client
+import jp.mydns.lilium.booklist.Book
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
