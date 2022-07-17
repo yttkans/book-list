@@ -78,7 +78,8 @@ class AwsRepository {
                 val metaFile = File(context.cacheDir, "meta.json")
                 if (metaFile.exists()) {
                     val localMeta = JSONObject(metaFile.readText())
-                    val instant = Instant.ofEpochSecond(localMeta.getLong("lastModified"))
+                    val lastModified = localMeta.getLong("lastModified") / 1000
+                    val instant = Instant.ofEpochSecond(lastModified)
                     val dateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
                     dateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
                 } else {
