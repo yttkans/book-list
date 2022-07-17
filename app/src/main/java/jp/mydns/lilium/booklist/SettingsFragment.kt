@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class SettingsFragment : PreferenceFragmentCompat(), CoroutineScope {
-    private val app = requireContext().applicationContext as MyApplication
+    private val app get() = requireContext().applicationContext as MyApplication
 
     private lateinit var awsAccessKey: String
     private lateinit var awsAccessKeyPref: Preference
@@ -65,6 +65,7 @@ class SettingsFragment : PreferenceFragmentCompat(), CoroutineScope {
 
         val fileListDateKey = getString(R.string.pref_file_list_date_key)
         val fileListDatePref = findPreference<Preference>(fileListDateKey)!!
+        fileListDatePref.summary = "(loading)"
         launch {
             fileListDatePref.summary = AwsRepository.loadFileListDate(requireContext())
         }
