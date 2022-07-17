@@ -21,6 +21,8 @@
     <string name="pref_aws_s3_bucket_key_title">Aws s3 bucket key</string>
     <string name="pref_aws_s3_object_key">pref_aws_s3_object_key</string>
     <string name="pref_aws_s3_object_key_title">Aws s3 object key</string>
+    <string name="pref_file_list_date_key">pref_file_list_date_key</string>
+    <string name="pref_file_list_date_title">File list date</string>
     <string name="pref_version_code_key">pref_version_code_key</string>
     <string name="pref_version_code_title">Version Code</string>
     <string name="pref_version_name_key">pref_version_name_key</string>

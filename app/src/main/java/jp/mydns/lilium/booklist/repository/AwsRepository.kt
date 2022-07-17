@@ -8,6 +8,10 @@ import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.zip.GZIPInputStream
 
 class AwsRepository {
@@ -66,6 +70,22 @@ class AwsRepository {
                 }
             } catch (e: Exception) {
                 emptyList()
+            }
+        }
+
+        suspend fun loadFileListDate(context: Context): String = withContext(Dispatchers.IO) {
+            return@withContext try {
+                val metaFile = File(context.cacheDir, "meta.json")
+                if (metaFile.exists()) {
+                    val localMeta = JSONObject(metaFile.readText())
+                    val instant = Instant.ofEpochSecond(localMeta.getLong("lastModified"))
+                    val dateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
+                    dateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+                } else {
+                    "(Missing metafile)"
+                }
+            } catch (e: Exception) {
+                "(${e.message})"
             }
         }
     }

@@ -13,6 +13,10 @@
         app:title="@string/pref_aws_s3_object_key_title" />
     <Preference
         app:defaultValue="@string/empty"
+        app:key="@string/pref_file_list_date_key"
+        app:title="@string/pref_file_list_date_title" />
+    <Preference
+        app:defaultValue="@string/empty"
         app:key="@string/pref_version_code_key"
         app:title="@string/pref_version_code_title" />
     <Preference
