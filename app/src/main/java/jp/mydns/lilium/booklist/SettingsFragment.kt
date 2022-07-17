@@ -4,8 +4,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import jp.mydns.lilium.booklist.repository.AwsRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class SettingsFragment : PreferenceFragmentCompat() {
+class SettingsFragment : PreferenceFragmentCompat(), CoroutineScope {
+    private val app = requireContext().applicationContext as MyApplication
+
     private lateinit var awsAccessKey: String
     private lateinit var awsAccessKeyPref: Preference
     private lateinit var awsSecretAccessKey: String
@@ -14,7 +22,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private lateinit var awsS3BucketKeyPref: Preference
     private lateinit var awsS3ObjectKey: String
     private lateinit var awsS3ObjectKeyPref: Preference
-    private lateinit var myPreferences: MyPreferences
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + Job()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         val preferencesName = getString(R.string.preferences_name)
@@ -25,33 +35,38 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        myPreferences = MyPreferences(requireContext())
-        myPreferences.awsAccessKey.observe(viewLifecycleOwner) {
+        app.myPreferences.awsAccessKey.observe(viewLifecycleOwner) {
             awsAccessKeyPref.summary = it ?: "(null)"
         }
 
         awsAccessKey = getString(R.string.pref_aws_access_key)
         awsAccessKeyPref = findPreference(awsAccessKey)!!
-        myPreferences.awsAccessKey.observe(viewLifecycleOwner) {
+        app.myPreferences.awsAccessKey.observe(viewLifecycleOwner) {
             awsAccessKeyPref.summary = it ?: "(null)"
         }
 
         awsSecretAccessKey = getString(R.string.pref_aws_secret_access_key)
         awsSecretAccessKeyPref = findPreference(awsSecretAccessKey)!!
-        myPreferences.awsSecretAccessKey.observe(viewLifecycleOwner) {
+        app.myPreferences.awsSecretAccessKey.observe(viewLifecycleOwner) {
             awsSecretAccessKeyPref.summary = it ?: "(null)"
         }
 
         awsS3BucketKey = getString(R.string.pref_aws_s3_bucket_key)
         awsS3BucketKeyPref = findPreference(awsS3BucketKey)!!
-        myPreferences.awsS3BucketKey.observe(viewLifecycleOwner) {
+        app.myPreferences.awsS3BucketKey.observe(viewLifecycleOwner) {
             awsS3BucketKeyPref.summary = it ?: "(null)"
         }
 
         awsS3ObjectKey = getString(R.string.pref_aws_s3_object_key)
         awsS3ObjectKeyPref = findPreference(awsS3ObjectKey)!!
-        myPreferences.awsS3ObjectKey.observe(viewLifecycleOwner) {
+        app.myPreferences.awsS3ObjectKey.observe(viewLifecycleOwner) {
             awsS3ObjectKeyPref.summary = it ?: "(null)"
+        }
+
+        val fileListDateKey = getString(R.string.pref_file_list_date_key)
+        val fileListDatePref = findPreference<Preference>(fileListDateKey)!!
+        launch {
+            fileListDatePref.summary = AwsRepository.loadFileListDate(requireContext())
         }
 
         val versionCodeKey = getString(R.string.pref_version_code_key)
