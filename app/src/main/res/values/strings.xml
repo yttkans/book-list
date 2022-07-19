@@ -3,13 +3,8 @@
     <string name="empty" />
 
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
     <string name="fragment_main_label">Main</string>
     <string name="fragment_settings_label">Settings</string>
-
     <string name="label_query">Query</string>
 
     <string name="preferences_name">root_preference</string>
